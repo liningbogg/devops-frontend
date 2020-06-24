@@ -1,15 +1,14 @@
 <template>
     <div id="app">
         <div id="nav">
-            <router-link to="/">Home</router-link> |
-            <router-link to="/about">About</router-link>|
+            <router-link to="/">主页</router-link> |
             <span class="pull-right">
-                <span v-if="!this.$store.state.name">
-                    <router-link to="/login">Login</router-link>|
-                    <router-link to="/register">Register</router-link>
+                <span v-if="!this.$store.state.username">
+                    <router-link to="/login">登录</router-link>|
+                    <router-link to="/register">注册</router-link>
                 </span>
                 <span v-else>
-                    <span>{{this.$store.state.name}}</span>
+                    <span>用户名:{{this.$store.state.username}}(已登录)</span>|
                     <router-link to="/logout">Logout</router-link>
                     <!-- <a @click="logout">Logout</a> -->
                 </span>
