@@ -63,7 +63,7 @@ export default {
                                     this.$store.state.username = response.data.username;
                                     localStorage.setItem("username", response.data.username);
                                     localStorage.setItem("token", token);
-                                    alert(tip);
+                                    this.$router.push("/")
                                 }
                             }
                         }

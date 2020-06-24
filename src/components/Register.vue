@@ -87,6 +87,7 @@ export default {
                                 }
                                 if(status=="success"){
                                     alert(tip);
+                                    this.$router.push('/login');
                                 }
                             }
                         }

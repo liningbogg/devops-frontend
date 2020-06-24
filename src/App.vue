@@ -10,7 +10,6 @@
                 <span v-else>
                     <span>用户名:{{this.$store.state.username}}(已登录)</span>|
                     <router-link to="/logout">Logout</router-link>
-                    <!-- <a @click="logout">Logout</a> -->
                 </span>
             </span>
         </div>
