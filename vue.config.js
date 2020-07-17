@@ -16,10 +16,17 @@ module.exports = {
 	//proxy: null, // string | Object
 	proxy: {
 	    '^/web': {
-	        target: 'http://10.0.0.20:8000',
+	        target: 'http://10.0.0.25:8000',
 	        changeOrigin: true,   // 允许跨域
                 pathRewriter: {
                     '^/web' : ''
+                },
+            },
+	    '^/resourcemanagement': {
+	        target: 'http://10.0.0.25:8000',
+	        changeOrigin: true,   // 允许跨域
+                pathRewriter: {
+                    '^/resourcemanagement' : ''
                 },
             }
         },

@@ -3,11 +3,11 @@
         <div class="login-wrapper">
             <div class="login-box">
                 <h2 class="g-ta-c g-f-600 g-fz-18">欢迎登录</h2>
-                    <div class="g-mt-20">
-                        <el-form :label-position="labelPosition" :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-                            <el-form-item label="用户名" prop="name">
-                                <el-input v-model="ruleForm.name"></el-input>
-                            </el-form-item>
+                <div class="g-mt-20">
+                    <el-form :label-position="labelPosition" :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+                        <el-form-item label="用户名" prop="name">
+                            <el-input v-model="ruleForm.name"></el-input>
+                        </el-form-item>
                         <el-form-item label="输入密码" prop="password">
                             <el-input type="password" v-model="ruleForm.password" effect="dark" show-password></el-input>
                         </el-form-item>
@@ -16,14 +16,20 @@
                         </el-form-item>
                     </el-form>
                 </div>
+                <RetrievePassword :username="hello" />
             </div>
         </div>
     </div>
 </template>
 <script>
 
+import RetrievePassword from '@/components/RetrievePassword.vue'
+
 export default {
     name: "login",
+    components: {
+        RetrievePassword,
+    },
     data() {
         return {
             labelPosition: 'right',//文字的对齐方式left、right、top
@@ -40,6 +46,7 @@ export default {
             }
         }
     },
+
     mounted() {},
     methods: {
         submitForm(formName) {
@@ -56,6 +63,7 @@ export default {
                                 let tip = response.data.tip;
                                 if(status=="failure"){
                                     alert(tip);
+
                                 }
                                 if(status=="success"){
                                     let token = response.data.token;
@@ -63,7 +71,12 @@ export default {
                                     this.$store.state.username = response.data.username;
                                     localStorage.setItem("username", response.data.username);
                                     localStorage.setItem("token", token);
-                                    this.$router.push("/")
+                                    if(this.$route.query.redirect){
+                                        let redirect = this.$route.query.redirect;
+                                        this.$router.push(redirect);
+                                    }else{
+                                        this.$router.push("/");
+                                    }
                                 }
                             }
                         }

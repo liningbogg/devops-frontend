@@ -15,18 +15,15 @@ export default {
   },
   methods:{
     dateFromDjango(){
-      let timer= 0;
       this.axios.get('web/test/').then(
         response => {
           if(response){
-            this.msg = response.data;
-            console.log(response.data);
-            timer = setTimeout(()=>{
-              this.dateFromDjango();
-            }, 100);
+            if(response.data.status==="success"){
+                this.msg = response.data.message;
+            }else{
+                this.msg = "获取时间信息出错,原因:"+response.data.tip;
+            }
 
-          }else{
-            clearTimeout(timer);
           }
         }
       )
